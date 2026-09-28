@@ -10,6 +10,7 @@
       font-family: Arial, Helvetica, sans-serif;
       background: #080b10;
       color: white;
+      min-height: 100vh;
     }
     header {
       background: linear-gradient(135deg, #111827, #05070a);
@@ -59,6 +60,7 @@
       border-radius: 18px;
       padding: 20px;
     }
+    .car-card.hidden { display: none; }
     .car-name { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
     .category {
       display: inline-block;
@@ -71,32 +73,139 @@
     }
     .price { font-size: 22px; font-weight: 900; margin-bottom: 8px; }
     .negociavel { color: #fbbf24; font-size: 12px; font-weight: bold; }
+    .empty {
+      display: none;
+      text-align: center;
+      color: #9ca3af;
+      padding: 30px 10px;
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">SEEM STORE</div>
     <div class="subtitle">CPM Angola</div>
-    <a class="whatsapp-btn" href="https://wa.me/244SEUNUMERO" target="_blank" rel="noopener">Fale connosco no WhatsApp</a>
+    <a class="whatsapp-btn" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Entrar na comunidade</a>
   </header>
 
   <div class="container">
     <h2 class="title">Carros à venda</h2>
 
     <div class="filters">
-      <div class="filter active" data-category="todos">Todos</div>
-      <div class="filter" data-category="novo">Novo</div>
-      <div class="filter" data-category="usado">Usado</div>
-      <div class="filter" data-category="leilao">Leilão</div>
+      <button class="filter active" data-category="todos">Todos</button>
+      <button class="filter" data-category="limitado">Limitado</button>
+      <button class="filter" data-category="pago">Pago</button>
+      <button class="filter" data-category="moeda">Moeda</button>
+      <button class="filter" data-category="normal">Normal</button>
+      <button class="filter" data-category="premium">Premium</button>
+      <button class="filter" data-category="cla">Melhores clãs</button>
     </div>
 
-    <div class="cars">
-      <div class="car-card" data-category="novo">
-        <h3 class="car-name">Toyota Corolla</h3>
-        <span class="category">novo</span>
-        <div class="price">Kz 5.200.000 <span class="negociavel">Negociável</span></div>
+    <div class="cars" id="cars">
+      <div class="car-card" data-category="limitado">
+        <h3 class="car-name">Ford F-650</h3>
+        <span class="category">Limitado</span>
+        <div class="price">4000 Kz <span class="negociavel">Negociável</span></div>
+      </div>
+
+      <div class="car-card" data-category="pago">
+        <h3 class="car-name">BMW M4</h3>
+        <span class="category">Pago</span>
+        <div class="price">2500 Kz <span class="negociavel">Negociável</span></div>
+      </div>
+
+      <div class="car-card" data-category="pago">
+        <h3 class="car-name">BMW M2</h3>
+        <span class="category">Pago</span>
+        <div class="price">3000 Kz <span class="negociavel">Negociável</span></div>
+      </div>
+
+      <div class="car-card" data-category="moeda">
+        <h3 class="car-name">BMW M3</h3>
+        <span class="category">Moeda</span>
+        <div class="price">1000 Kz</div>
+      </div>
+
+      <div class="car-card" data-category="moeda">
+        <h3 class="car-name">BMW M5</h3>
+        <span class="category">Moeda</span>
+        <div class="price">1000 Kz</div>
+      </div>
+
+      <div class="car-card" data-category="moeda">
+        <h3 class="car-name">Koenigsegg Jesko</h3>
+        <span class="category">Moeda</span>
+        <div class="price">2000 Kz <span class="negociavel">Negociável</span></div>
+      </div>
+
+      <div class="car-card" data-category="moeda">
+        <h3 class="car-name">Bugatti Chiron</h3>
+        <span class="category">Moeda</span>
+        <div class="price">1000 Kz</div>
+      </div>
+
+      <div class="car-card" data-category="normal">
+        <h3 class="car-name">Bugatti Veyron</h3>
+        <span class="category">Normal</span>
+        <div class="price">500 Kz</div>
+      </div>
+
+      <div class="car-card" data-category="limitado">
+        <h3 class="car-name">Toyota Fortuner</h3>
+        <span class="category">Limitado</span>
+        <div class="price">4000 Kz <span class="negociavel">Negociável</span></div>
+      </div>
+
+      <div class="car-card" data-category="cla">
+        <h3 class="car-name">Toyota Crown</h3>
+        <span class="category">Limitado pra melhores clãs</span>
+        <div class="price">2000 Kz</div>
+      </div>
+
+      <div class="car-card" data-category="premium">
+        <h3 class="car-name">Toyota Camry</h3>
+        <span class="category">Premium</span>
+        <div class="price">4000 Kz <span class="negociavel">Negociável</span></div>
+      </div>
+
+      <div class="car-card" data-category="moeda">
+        <h3 class="car-name">Ford Raptor</h3>
+        <span class="category">Moeda</span>
+        <div class="price">1000 Kz</div>
+      </div>
+
+      <div class="car-card" data-category="moeda">
+        <h3 class="car-name">Ford F-150</h3>
+        <span class="category">Moeda</span>
+        <div class="price">1000 Kz</div>
       </div>
     </div>
+
+    <p class="empty" id="empty">Nenhum carro nesta categoria.</p>
   </div>
+
+  <script>
+    const filters = document.querySelectorAll(".filter");
+    const cards = document.querySelectorAll(".car-card");
+    const empty = document.getElementById("empty");
+
+    filters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        filters.forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+
+        const cat = btn.getAttribute("data-category");
+        let shown = 0;
+
+        cards.forEach(function (card) {
+          const match = cat === "todos" || card.getAttribute("data-category") === cat;
+          card.classList.toggle("hidden", !match);
+          if (match) shown += 1;
+        });
+
+        empty.style.display = shown ? "none" : "block";
+      });
+    });
+  </script>
 </body>
 </html>
