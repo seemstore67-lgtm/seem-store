@@ -1,107 +1,287 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SEEM STORE</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#080b12;color:white}header{padding:20px;text-align:center;background:#111827;position:sticky;top:0}header h1{margin:0;color:#00e5ff}header p{margin:5px;color:#aaa}.hero{text-align:center;padding:55px 20px;background:linear-gradient(135deg,#071827,#101827)}.hero h2{font-size:38px;margin:10px}.hero p{color:#bbb}.btn{display:inline-block;background:#00e5ff;color:#001018;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:bold;margin:8px;border:0}.loja{padding:25px;max-width:1000px;margin:auto}.filtros{text-align:center;margin:20px 0}.filtros button{padding:9px 14px;margin:4px;border:1px solid #00e5ff;background:#111827;color:white;border-radius:8px}.carros{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.carro{background:#111827;border-radius:15px;padding:18px;box-shadow:0 4px 15px #000}.carro .foto{height:130px;background:linear-gradient(135deg,#172033,#26364d);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:45px}.carro h3{margin-bottom:5px}.preco{color:#00e5ff;font-size:20px;font-weight:bold}.carro button{width:100%;padding:11px;border:0;border-radius:8px;background:#00e5ff;font-weight:bold}.tag{font-size:12px;color:#aaa}.contacto{text-align:center;padding:40px 20px;background:#111827}footer{text-align:center;padding:20px;color:#777}#modal{display:none;position:fixed;inset:0;background:#000b;align-items:center;justify-content:center;padding:20px}.box{background:#111827;padding:25px;border-radius:15px;text-align:center;max-width:400px;width:100%}.fechar{background:#333;color:white;border:0;padding:10px 20px;border-radius:8px}
-</style>
-</head>
-<body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<header>
-<h1>SEEM STORE</h1>
-<p>CPM1 • Angola</p>
-</header>
+  <title>SEEM STORE | CPM Angola</title>
 
-<section class="hero">
-<h2>O teu próximo carro está aqui.</h2>
-<p>Compra carros para Car Parking Multiplayer 1.</p>
-<a class="btn" href="#loja">VER LOJA</a>
-</section>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<section class="loja" id="loja">
-<h2>🚗 Loja de carros</h2>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080b10;
+      color: white;
+    }
 
-<div class="filtros">
-<button onclick="filtrar('todos')">Todos</button>
-<button onclick="filtrar('normal')">Normais</button>
-<button onclick="filtrar('limitado')">Limitados</button>
-<button onclick="filtrar('premium')">Premium</button>
-</div>
+    /* CABEÇALHO */
+    header {
+      background: linear-gradient(135deg, #111827, #05070a);
+      padding: 35px 20px;
+      text-align: center;
+      border-bottom: 1px solid #242a35;
+    }
 
-<div class="carros">
+    .logo {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
 
-<div class="carro normal">
-<div class="foto">🚙</div><h3>BMW M4</h3>
-<span class="tag">Normal</span><p class="preco">100 Kz</p>
-<button onclick="pedir('BMW M4')">Pedir carro</button>
-</div>
+    .subtitle {
+      margin-top: 8px;
+      color: #9ca3af;
+      font-size: 15px;
+    }
 
-<div class="carro normal">
-<div class="foto">🚘</div><h3>Mercedes AMG</h3>
-<span class="tag">Normal</span><p class="preco">200 Kz</p>
-<button onclick="pedir('Mercedes AMG')">Pedir carro</button>
-</div>
+    /* BOTÃO WHATSAPP */
+    .whatsapp-btn {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 14px 22px;
+      background: #22c55e;
+      color: #06130a;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 12px;
+      transition: 0.2s;
+    }
 
-<div class="carro normal">
-<div class="foto">🏎️</div><h3>Nissan Skyline</h3>
-<span class="tag">Normal</span><p class="preco">300 Kz</p>
-<button onclick="pedir('Nissan Skyline')">Pedir carro</button>
-</div>
+    .whatsapp-btn:hover {
+      transform: scale(1.04);
+    }
 
-<div class="carro limitado">
-<div class="foto">🏁</div><h3>Supra MK4</h3>
-<span class="tag">Limitado</span><p class="preco">500 Kz</p>
-<button onclick="pedir('Supra MK4')">Pedir carro</button>
-</div>
+    /* CONTEÚDO */
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 25px 15px;
+    }
 
-<div class="carro limitado">
-<div class="foto">🔥</div><h3>GTR R35</h3>
-<span class="tag">Limitado</span><p class="preco">700 Kz</p>
-<button onclick="pedir('GTR R35')">Pedir carro</button>
-</div>
+    .title {
+      text-align: center;
+      font-size: 27px;
+      margin-bottom: 20px;
+    }
 
-<div class="carro premium">
-<div class="foto">🏆</div><h3>Lamborghini</h3>
-<span class="tag">Premium</span><p class="preco">1.000 Kz</p>
-<button onclick="pedir('Lamborghini')">Pedir carro</button>
-</div>
+    /* FILTROS */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
 
-</div>
-</section>
+    .filter {
+      background: #151a22;
+      border: 1px solid #303744;
+      color: white;
+      padding: 9px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-<section class="contacto">
-<h2>📲 Contacto</h2>
-<p>Queres comprar um carro? Fala com a SEEM STORE.</p>
-<a class="btn" href="https://wa.me/?text=Olá%20SEEM%20STORE!%20Quero%20comprar%20um%20carro.">WhatsApp</a>
-</section>
+    .filter.active {
+      background: white;
+      color: black;
+    }
 
-<footer>© 2026 SEEM STORE • CPM1 Angola</footer>
+    /* CARROS */
+    .cars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 17px;
+    }
 
-<div id="modal">
-<div class="box">
-<h2>🚗 Pedido</h2>
-<p id="texto"></p>
-<a class="btn" id="wa">Enviar no WhatsApp</a>
-<br><button class="fechar" onclick="fechar()">Fechar</button>
-</div>
-</div>
+    .car-card {
+      background: #11151c;
+      border: 1px solid #252c38;
+      border-radius: 18px;
+      padding: 20px;
+      transition: 0.2s;
+    }
 
-<script>
-function pedir(carro){
-document.getElementById("texto").innerText="Quero comprar: "+carro;
-document.getElementById("wa").href="https://wa.me/?text="+encodeURIComponent("Olá SEEM STORE! Quero comprar: "+carro);
-document.getElementById("modal").style.display="flex";
-}
-function fechar(){document.getElementById("modal").style.display="none"}
-function filtrar(tipo){
-document.querySelectorAll(".carro").forEach(c=>{
-c.style.display=(tipo=="todos"||c.classList.contains(tipo))?"block":"none";
-});
-}
-</script>
+    .car-card:hover {
+      transform: translateY(-4px);
+      border-color: #4b5563;
+    }
 
-</body>
-</html>
+    .car-name {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .category {
+      display: inline-block;
+      background: #202733;
+      color: #cbd5e1;
+      font-size: 12px;
+      padding: 6px 9px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .negociavel {
+      color: #fbbf24;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .cl<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SEEM STORE | CPM Angola</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080b10;
+      color: white;
+    }
+
+    /* CABEÇALHO */
+    header {
+      background: linear-gradient(135deg, #111827, #05070a);
+      padding: 35px 20px;
+      text-align: center;
+      border-bottom: 1px solid #242a35;
+    }
+
+    .logo {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      color: #9ca3af;
+      font-size: 15px;
+    }
+
+    /* BOTÃO WHATSAPP */
+    .whatsapp-btn {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 14px 22px;
+      background: #22c55e;
+      color: #06130a;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 12px;
+      transition: 0.2s;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.04);
+    }
+
+    /* CONTEÚDO */
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 25px 15px;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 27px;
+      margin-bottom: 20px;
+    }
+
+    /* FILTROS */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .filter {
+      background: #151a22;
+      border: 1px solid #303744;
+      color: white;
+      padding: 9px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .filter.active {
+      background: white;
+      color: black;
+    }
+
+    /* CARROS */
+    .cars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 17px;
+    }
+
+    .car-card {
+      background: #11151c;
+      border: 1px solid #252c38;
+      border-radius: 18px;
+      padding: 20px;
+      transition: 0.2s;
+    }
+
+    .car-card:hover {
+      transform: translateY(-4px);
+      border-color: #4b5563;
+    }
+
+    .car-name {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .category {
+      display: inline-block;
+      background: #202733;
+      color: #cbd5e1;
+      font-size: 12px;
+      padding: 6px 9px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .negociavel {
+      color: #fbbf24;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .cl
