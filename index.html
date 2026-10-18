@@ -1,347 +1,146 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SEEM STORE | CPM1 Angola</title>
-  <style>
-    :root {
-      --bg: #070b14;
-      --card: #10182a;
-      --card2: #0c1422;
-      --line: #1d2a44;
-      --cyan: #22e3ff;
-      --cyan2: #12c4e8;
-      --text: #f4f7fb;
-      --muted: #8b9bb4;
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Seem Store | Carros Car Parking Multiplayer em Kz</title>
+<meta name="description" content="Compre carros para o Car Parking Multiplayer: pagos, limitados e moeda a partir de 1000 Kz. Escolha o modelo e peça em segundos no nosso grupo de vendas." />
+<meta name="keywords" content="car parking multiplayer, carros CPM, comprar carros jogo, carros pagos Kz, conta car parking, loja de carros CPM" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Seem Store" />
+<meta property="og:title" content="Seem Store | Carros Car Parking Multiplayer em Kz" />
+<meta property="og:description" content="Loja de carros para Car Parking Multiplayer com preços em Kz. Pedido rápido pelo grupo de vendas no WhatsApp." />
+<meta property="og:locale" content="pt_AO" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: (function () {
+          var roles = ['background', 'primary', 'accent', 'secondary', 'foreground'];
+          var steps = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+          var out = {};
+          roles.forEach(function (role) {
+            var scale = {};
+            steps.forEach(function (step) {
+              scale[step] = 'oklch(var(--' + role + '-' + step + ') / <alpha-value>)';
+            });
+            out[role] = scale;
+          });
+          return out;
+        })(),
+        fontFamily: {
+          sans: ['var(--font-body)'],
+          body: ['var(--font-body)'],
+          heading: ['var(--font-heading)'],
+          display: ['var(--font-heading)'],
+          label: ['var(--font-label)']
+        },
+        keyframes: {
+          'fade-up': { '0%': { opacity: '0', transform: 'translateY(18px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+          'pulse-ring': { '0%': { transform: 'scale(0.9)', opacity: '0.6' }, '70%': { transform: 'scale(1.6)', opacity: '0' }, '100%': { transform: 'scale(1.6)', opacity: '0' } }
+        },
+        animation: {
+          'fade-up': 'fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both',
+          'pulse-ring': 'pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+        }
+      }
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    .hero {
-      position: relative;
-      min-height: 430px;
-      padding: 36px 18px 48px;
-      text-align: center;
-      overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(7,11,20,.35) 0%, rgba(7,11,20,.72) 55%, rgba(7,11,20,1) 100%),
-        url("wallpaper.jpg") center 60% / cover no-repeat,
-        #070b14;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 80%, rgba(34,227,255,.12), transparent 55%);
-      pointer-events: none;
-    }
-    .hero-inner { position: relative; z-index: 1; }
-    .logo {
-      font-size: 34px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: var(--cyan);
-      text-shadow: 0 0 18px rgba(34,227,255,.35);
-    }
-    .subtitle {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .hero h1 {
-      margin: 46px 0 10px;
-      font-size: 34px;
-      line-height: 1.15;
-    }
-    .hero p {
-      color: #c5d0e0;
-      font-size: 15px;
-      margin-bottom: 22px;
-    }
-    .btn {
-      display: inline-block;
-      background: var(--cyan);
-      color: #062029;
-      text-decoration: none;
-      font-weight: 800;
-      border: 0;
-      cursor: pointer;
-      border-radius: 12px;
-      padding: 13px 28px;
-    }
-    .btn:active { transform: scale(.98); }
-
-    .wrap { max-width: 980px; margin: 0 auto; padding: 8px 16px 40px; }
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 22px;
-      margin: 8px 0 16px;
-    }
-
-    .filters {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-    .filter {
-      background: transparent;
-      color: var(--text);
-      border: 1.5px solid #2a3c5d;
-      border-radius: 14px;
-      padding: 8px 14px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .filter.active {
-      background: var(--cyan);
-      border-color: var(--cyan);
-      color: #062029;
-    }
-
-    .cars {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .car-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 12px;
-    }
-    .car-card.hidden { display: none; }
-    .thumb {
-      height: 110px;
-      border-radius: 14px;
-      background: linear-gradient(180deg, #182338, #121b2c);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 52px;
-      margin-bottom: 12px;
-    }
-    .car-name { font-size: 18px; font-weight: 800; }
-    .category {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .price {
-      margin: 10px 0 12px;
-      color: var(--cyan);
-      font-size: 22px;
-      font-weight: 900;
-    }
-    .negociavel {
-      display: block;
-      color: #fbbf24;
-      font-size: 11px;
-      font-weight: 800;
-      margin-top: 2px;
-    }
-    .ask {
-      display: block;
-      width: 100%;
-      text-align: center;
-      background: var(--cyan);
-      color: #062029;
-      text-decoration: none;
-      font-weight: 800;
-      border-radius: 10px;
-      padding: 11px 8px;
-      font-size: 14px;
-    }
-    .empty {
-      display: none;
-      text-align: center;
-      color: var(--muted);
-      padding: 24px 8px;
-    }
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 12px;
-      padding: 10px 16px 28px;
-    }
-
-    @media (min-width: 720px) {
-      .logo { font-size: 42px; }
-      .hero { min-height: 520px; padding-top: 50px; }
-      .hero h1 { font-size: 44px; }
-      .cars { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-      .thumb { height: 130px; }
-    }
-  </style>
+  };
+</script>
+<style>
+  :root {
+    --background-50: 0.985 0.002 250; --background-100: 0.96 0.003 250; --background-200: 0.92 0.004 250;
+    --background-300: 0.86 0.005 250; --background-400: 0.75 0.006 250; --background-500: 0.62 0.007 250;
+    --background-600: 0.48 0.008 250; --background-700: 0.35 0.009 250; --background-800: 0.24 0.01 250;
+    --background-900: 0.17 0.011 250; --background-950: 0.115 0.01 250;
+    --foreground-50: 0.97 0.002 250; --foreground-100: 0.94 0.003 250; --foreground-200: 0.88 0.004 250;
+    --foreground-300: 0.78 0.006 250; --foreground-400: 0.68 0.007 250; --foreground-500: 0.55 0.008 250;
+    --foreground-600: 0.45 0.009 250; --foreground-700: 0.33 0.01 250; --foreground-800: 0.24 0.011 250;
+    --foreground-900: 0.18 0.011 250; --foreground-950: 0.12 0.01 250;
+    --primary-50: 0.98 0.03 118; --primary-100: 0.95 0.07 118; --primary-200: 0.9 0.12 118;
+    --primary-300: 0.86 0.16 118; --primary-400: 0.85 0.2 118; --primary-500: 0.85 0.21 118;
+    --primary-600: 0.74 0.19 118; --primary-700: 0.6 0.16 118; --primary-800: 0.47 0.12 118;
+    --primary-900: 0.36 0.09 118; --primary-950: 0.24 0.06 118;
+    --accent-50: 0.98 0.02 55; --accent-100: 0.95 0.05 55; --accent-200: 0.9 0.09 55;
+    --accent-300: 0.85 0.13 55; --accent-400: 0.8 0.16 55; --accent-500: 0.78 0.16 55;
+    --accent-600: 0.68 0.16 55; --accent-700: 0.56 0.14 55; --accent-800: 0.45 0.11 55;
+    --accent-900: 0.35 0.08 55; --accent-950: 0.23 0.05 55;
+    --secondary-50: 0.98 0.005 200; --secondary-100: 0.95 0.008 200; --secondary-200: 0.9 0.012 200;
+    --secondary-300: 0.84 0.016 200; --secondary-400: 0.72 0.02 200; --secondary-500: 0.58 0.02 200;
+    --secondary-600: 0.47 0.018 200; --secondary-700: 0.37 0.015 200; --secondary-800: 0.28 0.012 200;
+    --secondary-900: 0.21 0.01 200; --secondary-950: 0.15 0.008 200;
+    --font-heading: "Sora", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-label: "Sora", system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background-color: oklch(var(--background-950));
+    color: oklch(var(--foreground-50));
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+  }
+  section[id] { scroll-margin-top: 84px; }
+  ::selection { background-color: oklch(var(--primary-500)); color: oklch(var(--background-950)); }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
 </head>
 <body>
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="logo">SEEM STORE</div>
-      <div class="subtitle">CPM1 • Angola</div>
-      <h1>Os melhores carros estão aqui.</h1>
-      <p>Compra carros para Car Parking Multiplayer 1.</p>
-      <a class="btn" href="#loja">VER LOJA</a>
+<div class="min-h-screen w-full bg-background-950 overflow-x-hidden">
+  <header id="siteHeader" class="fixed top-0 inset-x-0 z-40 h-16 md:h-[72px] transition-all duration-300 bg-transparent border-b border-transparent">
+    <div class="h-full w-full px-4 md:px-8 flex items-center justify-between gap-6">
+      <a href="#top" class="flex items-center gap-2.5 cursor-pointer shrink-0">
+        <span class="w-9 h-9 rounded-md bg-primary-500 text-background-950 flex items-center justify-center">
+          <i class="ri-roadster-fill text-lg"></i>
+        </span>
+        <span class="leading-none">
+          <span class="block font-heading font-extrabold tracking-tight text-[17px] text-foreground-50">SEEM <span class="text-primary-500">STORE</span></span>
+          <span class="block text-[10px] uppercase tracking-[0.22em] text-foreground-400 mt-1">Car Parking MP</span>
+        </span>
+      </a>
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="#loja" class="px-4 py-2 text-sm text-foreground-300 hover:text-primary-500 transition-colors cursor-pointer whitespace-nowrap rounded-md hover:bg-background-900">Loja</a>
+        <a href="#precos" class="px-4 py-2 text-sm text-foreground-300 hover:text-primary-500 transition-colors cursor-pointer whitespace-nowrap rounded-md hover:bg-background-900">Preços</a>
+        <a href="#como-funciona" class="px-4 py-2 text-sm text-foreground-300 hover:text-primary-500 transition-colors cursor-pointer whitespace-nowrap rounded-md hover:bg-background-900">Como funciona</a>
+        <a href="#faq" class="px-4 py-2 text-sm text-foreground-300 hover:text-primary-500 transition-colors cursor-pointer whitespace-nowrap rounded-md hover:bg-background-900">FAQ</a>
+      </nav>
+      <div class="hidden md:flex items-center gap-3">
+        <div class="relative">
+          <button id="currencyBtn" type="button" aria-label="Escolher moeda dos preços" class="h-10 px-3 rounded-md border border-background-700 bg-background-900/70 text-foreground-200 text-xs font-label font-semibold flex items-center gap-2 hover:border-primary-500/60 hover:text-primary-500 transition-colors cursor-pointer whitespace-nowrap">
+            <i class="ri-global-line text-sm"></i>
+            <span id="currencyBtnLabel">AOA</span>
+            <i class="ri-arrow-down-s-line text-sm"></i>
+          </button>
+          <div id="currencyMenu" class="hidden absolute right-0 z-50 mt-2 w-64 rounded-lg border border-background-700 bg-background-900 p-1.5"></div>
+        </div>
+        <span class="flex items-center gap-2 text-xs text-foreground-400">
+          <span class="relative flex w-2 h-2 items-center justify-center">
+            <span class="absolute w-2 h-2 rounded-full bg-primary-500 animate-pulse-ring"></span>
+            <span class="w-2 h-2 rounded-full bg-primary-500"></span>
+          </span>
+          Loja online agora
+        </span>
+        <a id="navWhatsapp" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary-500 text-background-950 font-label font-semibold text-sm hover:bg-primary-400 transition-colors cursor-pointer whitespace-nowrap">
+          <i class="ri-whatsapp-line text-base"></i>
+          Entrar no grupo
+        </a>
+      </div>
+      <button id="mobileMenuBtn" type="button" aria-label="Abrir menu" class="md:hidden w-10 h-10 rounded-md border border-background-700 flex items-center justify-center text-foreground-100 cursor-pointer">
+        <i class="ri-menu-line text-xl"></i>
+      </button>
     </div>
-  </section>
-
-  <main class="wrap" id="loja">
-    <h2 class="section-title">🚗 Loja de carros</h2>
-
-    <div class="filters">
-      <button class="filter active" data-category="todos">Todos</button>
-      <button class="filter" data-category="normal">Normais</button>
-      <button class="filter" data-category="limitado">Limitados</button>
-      <button class="filter" data-category="premium">Premium</button>
-      <button class="filter" data-category="pago">Pago</button>
-      <button class="filter" data-category="moeda">Moeda</button>
-      <button class="filter" data-category="cla">Melhores clãs</button>
-    </div>
-
-    <div class="cars" id="cars">
-      <article class="car-card" data-category="limitado">
-        <div class="thumb">🚛</div>
-        <h3 class="car-name">Ford F-650</h3>
-        <span class="category">Limitado</span>
-        <div class="price">4000 Kz<span class="negociavel">Negociável</span></div>
-        <a class="ask" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Pedir carro</a>
-      </article>
-
-      <article class="car-card" data-category="pago">
-        <div class="thumb">🚙</div>
-        <h3 class="car-name">BMW M4</h3>
-        <span class="category">Pago</span>
-        <div class="price">2500 Kz<span class="negociavel">Negociável</span></div>
-        <a class="ask" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Pedir carro</a>
-      </article>
-
-      <article class="car-card" data-category="pago">
-        <div class="thumb">🚗</div>
-        <h3 class="car-name">BMW M2</h3>
-        <span class="category">Pago</span>
-        <div class="price">3000 Kz<span class="negociavel">Negociável</span></div>
-        <a class="ask" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Pedir carro</a>
-      </article>
-
-      <article class="car-card" data-category="moeda">
-        <div class="thumb">🚘</div>
-        <h3 class="car-name">BMW M3</h3>
-        <span class="category">Moeda</span>
-        <div class="price">1000 Kz</div>
-        <a class="ask" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Pedir carro</a>
-      </article>
-
-      <article class="car-card" data-category="moeda">
-        <div class="thumb">🚙</div>
-        <h3 class="car-name">BMW M5</h3>
-        <span class="category">Moeda</span>
-        <div class="price">1000 Kz</div>
-        <a class="ask" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Pedir carro</a>
-      </article>
-
-      <article class="car-card" data-category="moeda">
-        <div class="thumb">🏎️</div>
-        <h3 class="car-name">Koenigsegg Jesko</h3>
-        <span class="category">Moeda</span>
-        <div class="price">2000 Kz<span class="negociavel">Negociável</span></div>
-        <a class="ask" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Pedir carro</a>
-      </article>
-
-      <article class="car-card" data-category="moeda">
-        <div class="thumb">🏎️</div>
-        <h3 class="car-name">Bugatti Chiron</h3>
-        <span class="category">Moeda</span>
-        <div class="price">1000 Kz</div>
-        <a class="ask" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Pedir carro</a>
-      </article>
-
-      <article class="car-card" data-category="normal">
-        <div class="thumb">🚗</div>
-        <h3 class="car-name">Bugatti Veyron</h3>
-        <span class="category">Normal</span>
-        <div class="price">500 Kz</div>
-        <a class="ask" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Pedir carro</a>
-      </article>
-
-      <article class="car-card" data-category="limitado">
-        <div class="thumb">🚙</div>
-        <h3 class="car-name">Toyota Fortuner</h3>
-        <span class="category">Limitado</span>
-        <div class="price">4000 Kz<span class="negociavel">Negociável</span></div>
-        <a class="ask" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Pedir carro</a>
-      </article>
-
-      <article class="car-card" data-category="cla">
-        <div class="thumb">🚘</div>
-        <h3 class="car-name">Toyota Crown</h3>
-        <span class="category">Limitado pra melhores clãs</span>
-        <div class="price">2000 Kz</div>
-        <a class="ask" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Pedir carro</a>
-      </article>
-
-      <article class="car-card" data-category="premium">
-        <div class="thumb">🚗</div>
-        <h3 class="car-name">Toyota Camry</h3>
-        <span class="category">Premium</span>
-        <div class="price">4000 Kz<span class="negociavel">Negociável</span></div>
-        <a class="ask" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Pedir carro</a>
-      </article>
-
-      <article class="car-card" data-category="moeda">
-        <div class="thumb">🛻</div>
-        <h3 class="car-name">Ford Raptor</h3>
-        <span class="category">Moeda</span>
-        <div class="price">1000 Kz</div>
-        <a class="ask" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Pedir carro</a>
-      </article>
-
-      <article class="car-card" data-category="moeda">
-        <div class="thumb">🛻</div>
-        <h3 class="car-name">Ford F-150</h3>
-        <span class="category">Moeda</span>
-        <div class="price">1000 Kz</div>
-        <a class="ask" href="https://chat.whatsapp.com/FNvpk6C6Fhg3CeD8rIDYtZ" target="_blank" rel="noopener">Pedir carro</a>
-      </article>
-    </div>
-
-    <p class="empty" id="empty">Nenhum carro nesta categoria.</p>
-  </main>
-
-  <footer>SEEM STORE • CPM1 Angola</footer>
-
-  <script>
-    const filters = document.querySelectorAll(".filter");
-    const cards = document.querySelectorAll(".car-card");
-    const empty = document.getElementById("empty");
-
-    filters.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        filters.forEach(function (b) { b.classList.remove("active"); });
-        btn.classList.add("active");
-
-        const cat = btn.getAttribute("data-category");
-        let shown = 0;
-
-        cards.forEach(function (card) {
-          const match = cat === "todos" || card.getAttribute("data-category") === cat;
-          card.classList.toggle("hidden", !match);
-          if (match) shown += 1;
-        });
-
-        empty.style.display = shown ? "none" : "block";
-      });
-    });
-  </script>
-</body>
-          </html>
-          
+    <div id="mobileMenu" class="hidden md:hidden bg-background-950 border-b border-background-800 px-4 py-4 flex-col gap-1">
+      <a href="#loja" class="px-3 py-3 rounded-md text-sm text-foreground-200 hover:bg-background-900 cursor-pointer">Loja</a>
+      <a href="#precos" class="px-3 py-3 rounded-md text-sm text-foreground-200 hover:bg-background-900 cursor-pointer">Preços</a>
+      <a href="#como-funciona" class="px-3 py-3 rounded-md text-sm text-foreground-200 hover:bg-background-900 cursor-pointer">Como funciona</a>
+      <a href="#faq" class="px-3 py-3 rounded-md text-sm text-foreground-200 hover:bg-background-900 cursor-pointer">FAQ</a>
+      <div class="mt-3 mb-1">
+        <p class="px-1 pb-2 text-
